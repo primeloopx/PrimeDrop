@@ -1,6 +1,5 @@
-# VaultDrop — File Sharing Platform
-## by PrimeTriple4 | © PrimeTriple4 Studios
-
+StStudios — File Sharing Platform
+## by PrimeTriple4 | © PrimeLoopX Studios
 ---
 
 ## SETUP (cPanel Shared Hosting)
