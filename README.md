@@ -1,68 +1,46 @@
-StStudios — File Sharing Platform
-## by PrimeTriple4 | © PrimeLoopX Studios
+# PrimeDrop — Mini Download Hub
+
+[![PHP Version](https://img.shields.io/badge/PHP-7.4%2B-blue)](https://www.php.net/)  
+[![License](https://img.shields.io/badge/License-Free-orange)](https://github.com/PrimeTriple4/PrimeDrop/blob/main/LICENSE)
+
 ---
 
-## SETUP (cPanel Shared Hosting)
+## Overview
+**PrimeDrop** is a mini link-in-bio download platform by **PrimeTriple4** under **PrimeLoopX Studios**.  
+Users can tag this web link in their social media bio, and visitors can directly access multiple downloadable files like apps, games, and tools — **no signup, no payment required**.  
 
-1. Upload ALL files to your public_html (or subdirectory)
+It is flexible:  
+- Works **without any database** using JSON (`data/files.json`)  
+- Can optionally use a **database for hybrid control** (MySQL, MariaDB, or SQLite) if you need advanced management  
+
+Perfect for modders, content creators, or anyone sharing files online.
+
+---
+
+## Features
+- Acts as a **mini personal download hub / link-in-bio platform**  
+- Users can showcase multiple files like MSI, APKs, PC tools, or mods  
+- **Direct downloads with no login or payment**  
+- Works **without database** (JSON-based storage)  
+- Optionally supports **hybrid database control** for advanced file management  
+- Easy admin panel to upload/manage files  
+- Supports large files (default 500MB)  
+- Session-based admin authentication with offline key  
+- File downloads served via PHP (keeps URLs hidden from direct access)  
+
+---
+
+## Setup (cPanel / Shared Hosting)
+
+1. Upload **all files** to your `public_html` (or a subdirectory)  
 2. Set folder permissions:
-   - uploads/   → 755 (or 775)
-   - data/      → 755
-   - data/files.json → 644
+   - `uploads/` → `755` (or `775`)  
+   - `data/` → `755`  
+   - `data/files.json` → `644`  
 
-3. Open `data/config.php` and:
-   - Change `ADMIN_KEY` to your secret key
-   - Change `APP_NAME`, `APP_DEV_NAME`, `APP_COPYRIGHT_NAME` as needed
-
-4. Visit your site → Admin at `/admin/`
-
----
-
-## FILE STRUCTURE
-
-```
-/
-├── index.php           ← Public landing page
-├── download.php        ← File download handler
-├── .htaccess
-│
-├── admin/
-│   └── index.php       ← Admin panel (login + upload + manage)
-│
-├── data/
-│   ├── config.php      ← App config + helper functions
-│   ├── files.json      ← JSON "database"
-│   └── .htaccess       ← Blocks direct access
-│
-└── uploads/            ← Uploaded files stored here
-    └── .htaccess       ← Blocks PHP execution
-```
-
----
-
-## CONFIG VARIABLES (data/config.php)
-
-| Variable             | Description                        |
-|----------------------|------------------------------------|
-| `APP_NAME`           | Platform name shown on all pages   |
-| `APP_DEV_NAME`       | Developer name shown in footer     |
-| `APP_COPYRIGHT_NAME` | Copyright holder name              |
-| `ADMIN_KEY`          | Offline password for admin access  |
-| `ALLOWED_EXTS`       | Permitted file extensions          |
-| `MAX_FILE_SIZE`      | Max upload size (default 500MB)    |
-
----
-
-## ALLOWED FILE TYPES (default)
-zip, rar, exe, msi, apk, pdf, dmg, tar, gz, 7z, jar
-
----
-
-## SECURITY NOTES
-- `data/` is fully blocked from web access
-- `uploads/` has PHP execution disabled
-- Admin uses session-based auth after offline key check
-- No database required — pure JSON storage
-- File downloads served via PHP (no direct uploads URL exposed)
-
-⚠️ Note: This project requires PHP and cannot run directly on GitHub Pages.
+3. Open `data/config.php` and configure:
+```php
+define('ADMIN_KEY', 'your-secret-key');       // Admin offline password
+define('APP_NAME', 'PrimeDrop');              // App name shown on pages
+define('APP_DEV_NAME', 'PrimeTriple4');       // Developer name in footer
+define('APP_COPYRIGHT_NAME', 'PrimeLoopX');   // Copyright name
