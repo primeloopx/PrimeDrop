@@ -1,0 +1,8 @@
+Options -Indexes
+
+# Protect data and config directories
+<IfModule mod_authz_core.c>
+  <DirectoryMatch "(data|config)">
+    Require all denied
+  </DirectoryMatch>
+</IfModule>
